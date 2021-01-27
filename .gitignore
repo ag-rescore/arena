@@ -5,3 +5,4 @@ package-lock.json
 *.tern-port
 *.idea
 src/server/config/index.override.json
+src/server/config/index.override.js
