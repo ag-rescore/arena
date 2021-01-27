@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const bodyParser = require('body-parser');
 const handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
@@ -16,7 +17,12 @@ module.exports = function() {
 
   const app = express();
 
-  const defaultConfig = require(path.join(__dirname, 'config', 'index.json'));
+  let configPath = path.join(__dirname, 'config', 'index.override.json');
+  if (!fs.existsSync(configPath)) {
+    configPath = path.join(__dirname, 'config', 'index.json');
+  }
+
+  const defaultConfig = require(configPath);
 
   const Queues = require('./queue');
 
