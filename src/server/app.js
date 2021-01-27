@@ -17,9 +17,11 @@ module.exports = function() {
 
   const app = express();
 
-  let configPath = path.join(__dirname, 'config', 'index.override.json');
-  if (!fs.existsSync(configPath)) {
-    configPath = path.join(__dirname, 'config', 'index.json');
+  let configPath = path.join(__dirname, 'config', 'index.json');
+  if (fs.existsSync(path.join(__dirname, 'config', 'index.override.js'))) {
+    configPath = path.join(__dirname, 'config', 'index.override.js');
+  } else if (fs.existsSync(path.join(__dirname, 'config', 'index.override.json'))) {
+    configPath = path.join(__dirname, 'config', 'index.override.json');
   }
 
   const defaultConfig = require(configPath);
