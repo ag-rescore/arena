@@ -13,14 +13,23 @@ class Queues {
       },
       set useCdn(newValue) {
         this.value = newValue;
-      }
+      },
     };
 
     this.setConfig(config);
   }
 
-  list() {
+  list(hostId) {
+    if (hostId) {
+      return this._config.queues.filter((q) => q.hostId === hostId);
+    }
     return this._config.queues;
+  }
+
+  listHosts() {
+    const hosts = {};
+    this._config.queues.forEach(({ hostId }) => (hosts[hostId] = 0));
+    return Object.keys(hosts);
   }
 
   setConfig(config) {
@@ -30,7 +39,7 @@ class Queues {
   async get(queueName, queueHost) {
     const queueConfig = _.find(this._config.queues, {
       name: queueName,
-      hostId: queueHost
+      hostId: queueHost,
     });
     if (!queueConfig) return null;
 
@@ -49,7 +58,7 @@ class Queues {
     const isBee = type === 'bee';
 
     const options = {
-      redis: redis || url || redisHost
+      redis: redis || url || redisHost,
     };
     if (prefix) options.prefix = prefix;
 
@@ -59,7 +68,7 @@ class Queues {
         isWorker: false,
         getEvents: false,
         sendEvents: false,
-        storeJobs: false
+        storeJobs: false,
       });
 
       queue = new Bee(name, options);
@@ -87,7 +96,7 @@ class Queues {
     } else {
       return queue.add(data, {
         removeOnComplete: false,
-        removeOnFail: false
+        removeOnFail: false,
       });
     }
   }
