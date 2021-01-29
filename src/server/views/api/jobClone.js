@@ -1,21 +1,21 @@
 async function handler(req, res) {
   const { queueName, queueHost, id } = req.params;
 
-  const {Queues} = req.app.locals;
+  const { Queues } = req.app.locals;
 
   const queue = await Queues.get(queueName, queueHost);
-  if (!queue) return res.status(404).send({error: 'queue not found'});
+  if (!queue) return res.status(404).send({ error: 'queue not found' });
 
   const job = await queue.getJob(id);
-  if (!job) return res.status(404).send({error: 'job not found'});
+  if (!job) return res.status(404).send({ error: 'job not found' });
 
   try {
-    await job.retry();
+    await Queues.set(queue, job.data);
     return res.sendStatus(200);
   } catch (e) {
     const body = {
       error: 'queue error',
-      details: e.stack
+      details: e.stack,
     };
     return res.status(500).send(body);
   }
