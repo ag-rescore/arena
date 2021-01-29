@@ -19,7 +19,8 @@
 </div>
 
 {{#contentFor 'sidebar'}}
-  <li class="active"><a href="#">Queues Overview</a></li>
+  <li><a href="{{ ../basePath }}/">Hosts Overview</a></li>
+  <li class="active"><a href="#">Queues Overview <code>{{ queueHost }}</code></a></li>
 {{/contentFor}}
 
 {{#contentFor 'script'}}

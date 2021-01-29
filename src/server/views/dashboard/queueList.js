@@ -4,7 +4,7 @@ function handler(req, res) {
   const queues = Queues.list(queueHost);
   const basePath = req.baseUrl;
 
-  return res.render('dashboard/templates/queueList', { basePath, queues });
+  return res.render('dashboard/templates/queueList', { basePath, queueHost, queues });
 }
 
 module.exports = handler;

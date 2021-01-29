@@ -46,7 +46,8 @@
 </div>
 
 {{#contentFor 'sidebar'}}
-  <li><a href="{{ basePath }}/">Queues Overview</a></li>
+  <li><a href="{{ basePath }}/">Hosts Overview</a></li>
+  <li><a href="{{ basePath }}/{{ encodeURI queueHost }}">Queues Overview <code>{{ queueHost }}</code></a></li>
   <li class="active"><a href="#">Queue <code>{{ queueHost }}/{{ queueName }}</code></a></li>
 {{/contentFor}}
 
