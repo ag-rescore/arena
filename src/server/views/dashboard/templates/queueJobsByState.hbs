@@ -68,6 +68,7 @@
         <ul class="dropdown-menu">
           <li><a href="{{ basePath }}/{{ encodeURI queueHost }}/{{ encodeURI queueName }}/{{ state }}?page={{ currentPage }}&amp;pageSize={{ pageSize }}">{{ pageSize }} jobs</a></li>
           <li role="separator" class="divider"></li>
+          <li><a href="{{ basePath }}/{{ encodeURI queueHost }}/{{ encodeURI queueName }}/{{ state }}?page={{ adjustedPage currentPage pageSize 1 }}&amp;pageSize=1">1 job</a></li>
           <li><a href="{{ basePath }}/{{ encodeURI queueHost }}/{{ encodeURI queueName }}/{{ state }}?page={{ adjustedPage currentPage pageSize 5 }}&amp;pageSize=5">5 jobs</a></li>
           <li><a href="{{ basePath }}/{{ encodeURI queueHost }}/{{ encodeURI queueName }}/{{ state }}?page={{ adjustedPage currentPage pageSize 20 }}&amp;pageSize=20">20 jobs</a></li>
           <li><a href="{{ basePath }}/{{ encodeURI queueHost }}/{{ encodeURI queueName }}/{{ state }}?page={{ adjustedPage currentPage pageSize 100 }}&amp;pageSize=100">100 jobs</a></li>
